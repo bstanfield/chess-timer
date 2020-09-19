@@ -1,0 +1,35 @@
+body {
+  font-family: system-ui, Arial, Helvetica;
+  text-align: center;
+  margin-top: 40px;
+}
+
+h1 {
+  font-size: 140px;
+  margin: 0px;
+  padding-bottom: 10px;
+}
+
+button {
+  cursor: pointer;
+  padding: 10px;
+  font-size: 20px;
+  display: block;
+  margin: auto;
+  margin-bottom: 12px;
+  width: 200px;
+}
+
+#container {
+  width: 90%;
+  margin: auto;
+  max-width: 300px;
+  position: relative;
+}
+
+#status-indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 30px;
+}
