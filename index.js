@@ -25,12 +25,12 @@ function resumeTimer() {
 function togglePause() {
   if (paused) {
     paused = false;
-    document.getElementById("status-indicator").textContent = "";
+    document.getElementById("status-indicator").style.display = 'none';
     document.getElementById("pause-play").textContent = PAUSE_TEXT;
     resumeTimer();
   } else {
     paused = true;
-    document.getElementById("status-indicator").textContent = "||";
+    document.getElementById("status-indicator").style.display = 'block';
     document.getElementById("pause-play").textContent = PLAY_TEXT;
     clearInterval(countdown);
   }
@@ -38,7 +38,7 @@ function togglePause() {
 
 function start() {
   paused = false;
-  document.getElementById("status-indicator").textContent = "";
+  document.getElementById("status-indicator").textContent = 'none';
   if (secondsLeft < TURN_DURATION) {
     clearInterval(countdown);
     secondsLeft = TURN_DURATION;

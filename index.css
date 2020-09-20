@@ -23,11 +23,11 @@ button {
 #container {
   width: 90%;
   margin: auto;
-  /* max-width: 300px; */
   position: relative;
 }
 
 #status-indicator {
+  display: none;
   position: absolute;
   top: 0;
   right: 0;

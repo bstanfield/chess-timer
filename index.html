@@ -1,21 +1,23 @@
 <html>
-  <head>
-    <title>Chess Timer</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
-    <link rel="icon" href="favicon.ico" />
-    <script src="index.js"></script>
-  </head>
 
-  <body>
-    <div id="title">Chess Timer</div>
-    <div id="container">
-      <h1 id="seconds">60</h1>
-      <p id="status-indicator"></p>
-      <button id="start-turn" onclick="start()">Start new turn</button>
-      <button id="pause-play" onclick="togglePause()">Pause</button>
-    </div>
+<head>
+  <title>Chess Timer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="index.css" />
+  <link rel="icon" href="favicon.ico" />
+  <script src="index.js"></script>
+</head>
 
-    <div id="title"></div>
-  </body>
+<body>
+  <div id="title">Chess Timer</div>
+  <div id="container">
+    <h1 id="seconds">60</h1>
+    <p id="status-indicator">⏸</p>
+    <button id="start-turn" onclick="start()">Start new turn</button>
+    <button id="pause-play" onclick="togglePause()">Pause</button>
+  </div>
+
+  <div id="title"></div>
+</body>
+
 </html>
