@@ -38,7 +38,7 @@ function togglePause() {
 
 function start() {
   paused = false;
-  document.getElementById("status-indicator").textContent = 'none';
+  document.getElementById("status-indicator").style.display = 'none';
   if (secondsLeft < TURN_DURATION) {
     clearInterval(countdown);
     secondsLeft = TURN_DURATION;
