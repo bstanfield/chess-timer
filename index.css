@@ -23,7 +23,7 @@ button {
 #container {
   width: 90%;
   margin: auto;
-  max-width: 300px;
+  /* max-width: 300px; */
   position: relative;
 }
 
@@ -32,4 +32,10 @@ button {
   top: 0;
   right: 0;
   font-size: 30px;
+}
+
+#title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 600;
 }
