@@ -8,8 +8,6 @@ let secondsLeft = TURN_DURATION + START_BUFFER;
 let paused = false;
 let countdown;
 
-// TODO: add decimal point when it's 10 seconds or less
-
 function resumeTimer() {
   countdown = setInterval(() => {
     // don't use equality operator for double
