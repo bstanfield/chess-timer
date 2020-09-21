@@ -5,19 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="index.css" />
   <link rel="icon" href="favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@500&display=swap" rel="stylesheet">
   <script src="index.js"></script>
 </head>
 
 <body>
-  <div id="title">Chess Timer</div>
+  <p class="status-indicator top-right">⏸</p>
+  <p class="status-indicator bottom-left">⏸</p>
   <div id="container">
-    <h1 id="seconds">60</h1>
-    <p id="status-indicator">⏸</p>
+    <div id="text-area">
+      <h1 class="seconds">60</h1>
+    </div>
     <button id="start-turn" onclick="start()">Start new turn</button>
-    <button id="pause-play" onclick="togglePause()">Pause</button>
-  </div>
+    <button class="pause-play" onclick="togglePause()">Pause</button>
 
-  <div id="title"></div>
+    <br />
+    <br />
+    <br />
+
+    <div class="flipped">
+      <div id="text-area">
+        <h1 class="seconds">60</h1>
+      </div>
+      <button id="start-turn" onclick="start()">Start new turn</button>
+      <button class="pause-play" onclick="togglePause()">Pause</button>
+    </div>
+  </div>
 </body>
 
 </html>
