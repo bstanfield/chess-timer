@@ -1,7 +1,12 @@
 body {
-  font-family: system-ui, Arial, Helvetica;
+  margin: 0;
+  padding: 0;
+  font-family: 'Fira Mono', system-ui, Arial, Helvetica;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 0px;
+  overflow: hidden;
+  position: relative;
+  vertical-align: center;
 }
 
 h1 {
@@ -23,19 +28,41 @@ button {
 #container {
   width: 90%;
   margin: auto;
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: fit-content;
 }
 
-#status-indicator {
+.status-indicator {
   display: none;
   position: absolute;
-  top: 0;
-  right: 0;
   font-size: 30px;
+}
+
+.top-right {
+  top: 0;
+  right: 32;
+}
+
+.bottom-left {
+  bottom: 0;
+  left: 32;
+}
+
+#text-area {
+  position: relative;
+  max-width: 300px;
+  margin: auto;
 }
 
 #title {
   text-align: center;
   font-size: 32px;
-  font-weight: 600;
+}
+
+.flipped {
+  transform: rotate(180deg);
 }
