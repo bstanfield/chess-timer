@@ -1,7 +1,7 @@
-const TURN_DURATION = 3;
+const TURN_DURATION = 1;
 const PAUSE_TEXT = "Pause";
 const PLAY_TEXT = "Resume play";
-const RESERVE_TIME = 30;
+const RESERVE_TIME = 2;
 
 // needed to account for button press time
 const START_BUFFER = 0.1;
@@ -17,39 +17,61 @@ let reserveTimeById = {
   2: RESERVE_TIME,
 }
 
+console.log(activePlayerId);
+
 // converts htmlCollection -> Array
 function getElementsAsArray(className) {
   let elements = document.getElementsByClassName(className);
   return Array.from(elements);
 }
 
-function resumeTimer() {
-  while (secondsLeft > 0.2) {
-    console.log(secondsLeft);
-    countdown = setInterval(() => {
-      secondsLeft = secondsLeft - 0.1;
-      const decimalPlaces = secondsLeft < 10 ? 1 : 0;
-      const counters = getElementsAsArray('seconds');
-      counters.map(counter => counter.textContent = secondsLeft.toFixed(decimalPlaces));
-    }, 100);
-  }
-  
-  const counters = getElementsAsArray('seconds');
-  const textContent = reserveTimeById[activePlayerId] < 0.2 ? "Game over." : "Done!";
-  counters.map(counter => counter.textContent = textContent);
-
-  while (reserveTimeById[activePlayerId] > 0.2) {
+function resumeReserveTimer() {
+  console.log('oo we made it');
     reserveCountdown = setInterval(() => {
+      if (reserveTimeById[activePlayerId] < 0.2) {
+        console.log('actual time\'s up');
+        const inactivePlayerId = activePlayerId === 1 ? 2 : 1;
+        
+        const reserveTimer = getElementsAsArray(`reserve-timer player-${activePlayerId}`)
+        reserveTimer[0].textContent = '0.0';
+
+        const activeSecondsTextElement = getElementsAsArray(`seconds player-${activePlayerId}`)
+        const inactiveSecondsTextElement = getElementsAsArray(`seconds player-${inactivePlayerId}`)
+        activeSecondsTextElement[0].textContent = "LOSE!";
+        inactiveSecondsTextElement[0].textContent = "WIN!";
+        
+        clearInterval(reserveCountdown);
+      }
+      
+      console.log(`player ${activePlayerId} reserve time: ${reserveTimeById[activePlayerId]}`);
       reserveTimeById[activePlayerId] = reserveTimeById[activePlayerId] - 0.1;
-      const decimalPlaces = reserveTimeById[activePlayerId] < 10 ? 1 : 0;
-
-      const reserveTimer = getElementsByClassName(`reserve-timer player-${activePlayerId}`)
-      reserveTimer.textContent = reserveTimeById[activePlayerId].toFixed(decimalPlaces);
+      const reserveTimer = getElementsAsArray(`reserve-timer player-${activePlayerId}`)
+      console.log(`reserveTimerId: ${reserveTimer}`);
+      reserveTimer[0].textContent = reserveTimeById[activePlayerId].toFixed(1);
     }, 100);
-  }
+}
 
 
-  // TODO: figure out clear interval
+function resumeTimer() {
+  console.log(secondsLeft);  
+  countdown = setInterval(() => {
+    console.log(secondsLeft);
+    if (secondsLeft < 0.2) {
+      clearInterval(countdown);
+      const counters = getElementsAsArray('seconds');
+      counters.map(counter => counter.textContent = 'Done!');
+      resumeReserveTimer();
+      return;
+    }
+
+    secondsLeft = secondsLeft - 0.1;
+    const decimalPlaces = secondsLeft < 10 ? 1 : 0;
+    const counters = getElementsAsArray('seconds');
+    counters.map(counter => counter.textContent = secondsLeft.toFixed(decimalPlaces));
+  }, 100);
+  
+  
+
 }
 
 function togglePause(playerId) {
