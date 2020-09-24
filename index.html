@@ -15,9 +15,10 @@
   <div id="container">
     <div id="text-area">
       <h1 class="seconds">60</h1>
+      <div class="reserve-timer player-2" data-player-id="1">30</div>
     </div>
-    <button id="start-turn" onclick="start()">Start new turn</button>
-    <button class="pause-play" onclick="togglePause()">Pause</button>
+    <button id="start-turn" onclick="start(2)">Start new turn</button>
+    <button class="pause-play" onclick="togglePause(2)">Pause</button>
 
     <br />
     <br />
@@ -26,9 +27,10 @@
     <div class="flipped">
       <div id="text-area">
         <h1 class="seconds">60</h1>
+        <div class="reserve-timer player-1" data-player-id="2">30</div>
       </div>
-      <button id="start-turn" onclick="start()">Start new turn</button>
-      <button class="pause-play" onclick="togglePause()">Pause</button>
+      <button id="start-turn" onclick="start(2)">Start new turn</button>
+      <button class="pause-play" onclick="togglePause(2)">Pause</button>
     </div>
   </div>
 </body>
