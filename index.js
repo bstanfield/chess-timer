@@ -1,7 +1,8 @@
-const TURN_DURATION = 1;
+const TURN_DURATION = 60;
+const RESERVE_TIME = 30;
+
 const PAUSE_TEXT = "Pause";
 const PLAY_TEXT = "Resume play";
-const RESERVE_TIME = 2;
 
 // needed to account for button press time
 const START_BUFFER = 0.1;
@@ -26,25 +27,24 @@ function getElementsAsArray(className) {
 }
 
 function resumeReserveTimer() {
-  console.log('oo we made it');
     reserveCountdown = setInterval(() => {
-      if (reserveTimeById[activePlayerId] < 0.2) {
-        console.log('actual time\'s up');
+      if (reserveTimeById[activePlayerId] < 0.1) {
         const inactivePlayerId = activePlayerId === 1 ? 2 : 1;
         
+        clearInterval(reserveCountdown);
         const reserveTimer = getElementsAsArray(`reserve-timer player-${activePlayerId}`)
-        reserveTimer[0].textContent = '0.0';
+        reserveTimer[0].textContent = "0.0";
 
         const activeSecondsTextElement = getElementsAsArray(`seconds player-${activePlayerId}`)
         const inactiveSecondsTextElement = getElementsAsArray(`seconds player-${inactivePlayerId}`)
-        activeSecondsTextElement[0].textContent = "LOSE!";
-        inactiveSecondsTextElement[0].textContent = "WIN!";
+        activeSecondsTextElement[0].textContent = "LOSE";
+        inactiveSecondsTextElement[0].textContent = "WIN";
         
         clearInterval(reserveCountdown);
       }
       
-      console.log(`player ${activePlayerId} reserve time: ${reserveTimeById[activePlayerId]}`);
-      reserveTimeById[activePlayerId] = reserveTimeById[activePlayerId] - 0.1;
+      // console.log(`player ${activePlayerId} reserve time: ${reserveTimeById[activePlayerId]}`);
+      reserveTimeById[activePlayerId] = Math.abs(reserveTimeById[activePlayerId] - 0.1);
       const reserveTimer = getElementsAsArray(`reserve-timer player-${activePlayerId}`)
       console.log(`reserveTimerId: ${reserveTimer}`);
       reserveTimer[0].textContent = reserveTimeById[activePlayerId].toFixed(1);
@@ -53,9 +53,7 @@ function resumeReserveTimer() {
 
 
 function resumeTimer() {
-  console.log(secondsLeft);  
   countdown = setInterval(() => {
-    console.log(secondsLeft);
     if (secondsLeft < 0.2) {
       clearInterval(countdown);
       const counters = getElementsAsArray('seconds');
@@ -78,6 +76,7 @@ function togglePause(playerId) {
   activePlayerId = playerId;
   if (paused) {
     paused = false;
+    
     // toggle pause emoji
     const indicators = getElementsAsArray('status-indicator');
     indicators.map(i => i.style.display = 'none');
