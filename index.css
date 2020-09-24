@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Fira Mono', system-ui, Arial, Helvetica;
+  font-family: "Fira Mono", system-ui, Arial, Helvetica;
   text-align: center;
   margin-top: 0px;
   overflow: hidden;
@@ -27,8 +27,8 @@ button {
 
 #container {
   width: 90%;
+  padding: 8px;
   margin: auto;
-  position: absolute;
   left: 0;
   right: 0;
   top: 0;
@@ -54,7 +54,7 @@ button {
 
 #text-area {
   position: relative;
-  max-width: 300px;
+  /* max-width: 300px; */
   margin: auto;
 }
 

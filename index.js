@@ -1,4 +1,4 @@
-const TURN_DURATION = 60;
+const TURN_DURATION = 13;
 const PAUSE_TEXT = "Pause";
 const PLAY_TEXT = "Resume play";
 
@@ -19,7 +19,7 @@ function resumeTimer() {
     // don't use equality operator for double
     if (0.1 < secondsLeft < 0.2) {
       const counters = getElementsAsArray('seconds');
-      counters.map(counter => counter.textContent = "Time's up!");
+      counters.map(counter => counter.textContent = "Done!");
       return;
     }
 
