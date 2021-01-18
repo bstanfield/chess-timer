@@ -1,4 +1,4 @@
-const TURN_DURATION = 13;
+const TURN_DURATION = 20;
 const PAUSE_TEXT = "Pause";
 const PLAY_TEXT = "Resume play";
 
@@ -18,8 +18,12 @@ function resumeTimer() {
   countdown = setInterval(() => {
     // don't use equality operator for double
     if (0.1 < secondsLeft < 0.2) {
-      const counters = getElementsAsArray('seconds');
-      counters.map(counter => counter.textContent = "Done!");
+      const text = document.getElementById('text');
+      text.innerHTML = 0;
+
+      const chime = document.getElementById('chime');
+      chime.play();
+
       return;
     }
 
@@ -33,9 +37,9 @@ function resumeTimer() {
 function togglePause() {
   if (paused) {
     paused = false;
-    // toggle pause emoji
-    const indicators = getElementsAsArray('status-indicator');
-    indicators.map(i => i.style.display = 'none');
+
+    const text = document.getElementById('text-area');
+    text.style.opacity = 1;
 
     // toggle pause/play text on btn
     const buttons = getElementsAsArray('pause-play');
@@ -43,7 +47,12 @@ function togglePause() {
     resumeTimer();
   } else {
     paused = true;
-    // toggle pause emoji
+    const text = document.getElementById('text-area');
+    text.style.opacity = 0.5;
+
+    const chime = document.getElementById('chime');
+    chime.pause();
+
     const indicators = getElementsAsArray('status-indicator');
     indicators.map(i => i.style.display = 'block');
 
@@ -56,6 +65,14 @@ function togglePause() {
 
 function start() {
   paused = false;
+
+  const chime = document.getElementById('chime');
+  chime.pause();
+
+  // Sets text opacity to 1
+  const text = document.getElementById('text-area');
+  text.style.opacity = 1;
+
   const indicators = getElementsAsArray('status-indicator');
   indicators.map(i => i.style.display = 'none');
   if (secondsLeft < TURN_DURATION) {
